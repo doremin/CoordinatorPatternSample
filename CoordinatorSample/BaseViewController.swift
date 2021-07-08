@@ -9,7 +9,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    var coordinator: Coordinator? = nil
+    weak var coordinator: Coordinator? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
