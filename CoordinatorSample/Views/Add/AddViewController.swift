@@ -83,8 +83,6 @@ class AddViewController: BaseViewController {
     override func bind() {
         super.bind()
         
-        self.contentTextView.rx.
-        
         let input = AddViewModel.Input(
             title: self.titleField.rx.text.asObservable(),
             contents: self.contentTextView.rx.text.asObservable(),
