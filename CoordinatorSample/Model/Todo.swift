@@ -6,8 +6,8 @@
 //
 
 struct Todo: Codable {
-    let title: String
-    let contents: String
+    var title: String
+    var contents: String
     let id: Int
     
     init(title: String, contents: String, id: Int) {

@@ -24,10 +24,18 @@ class HomeCoordinator: NSObject, Coordinator {
         self.presenter.pushViewController(homeViewController, animated: true)
     }
     
-    func navigateToDetail() {
-        let detailViewModel = DetailViewModel(model: TodoModel.shared)
+    func navigateToAdd() {
+        let detailViewModel = AddViewModel(model: TodoModel.shared)
         detailViewModel.coordinator = self
-        let detailViewController = DetailViewController(viewModel: detailViewModel)
+        let detailViewController = AddViewController(viewModel: detailViewModel)
+        
+        self.presenter.present(detailViewController, animated: true)
+    }
+    
+    func navigateToDetail(todo: Todo) {
+        let detailViewModel = AddViewModel(model: TodoModel.shared)
+        detailViewModel.coordinator = self
+        let detailViewController = AddViewController(viewModel: detailViewModel)
         
         self.presenter.pushViewController(detailViewController, animated: true)
     }

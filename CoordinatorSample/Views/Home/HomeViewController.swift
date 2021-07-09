@@ -49,24 +49,31 @@ class HomeViewController: BaseViewController {
         self.tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        
     }
     
     // MARK: Binding
     override func bind() {
         super.bind()
         
+        let output = self.viewModel.transform(input: HomeViewModel.Input())
+        
         // MARK: From View Model
-        self.viewModel.todos
-            .bind(to: self.tableView.rx.items(cellIdentifier: "tt")) { index, todo, cell in
+        output.todos
+            .drive(self.tableView.rx.items(cellIdentifier: "tt")) { index, todo, cell in
                 cell.textLabel?.text = todo.title
             }
             .disposed(by: self.disposeBag)
         
         // MARK: To View Model
         self.navigationItem.rightBarButtonItem?.rx.tap
-            .bind(onNext: self.viewModel.navigateToDetail)
+            .bind(onNext: self.viewModel.navigateToAdd)
+            .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.itemSelected
+            .bind(onNext: {
+                self.viewModel.selectTodo(index: $0.row)
+                self.tableView.deselectRow(at: $0, animated: true)
+            })
             .disposed(by: self.disposeBag)
     }
 }
