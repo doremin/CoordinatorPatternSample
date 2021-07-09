@@ -18,14 +18,16 @@ class HomeCoordinator: NSObject, Coordinator {
     }
     
     func start() {
-        let homeViewController = HomeViewController()
-        homeViewController.coordinator = self
+        let homeViewModel = HomeViewModel(todoModel: TodoModel.shared)
+        homeViewModel.coordinator = self
+        let homeViewController = HomeViewController(viewModel: homeViewModel)
         self.presenter.pushViewController(homeViewController, animated: true)
     }
     
     func navigateToDetail() {
-        let detailViewController = DetailViewController()
-        detailViewController.coordinator = self
+        let detailViewModel = DetailViewModel(model: TodoModel.shared)
+        detailViewModel.coordinator = self
+        let detailViewController = DetailViewController(viewModel: detailViewModel)
         
         self.presenter.pushViewController(detailViewController, animated: true)
     }

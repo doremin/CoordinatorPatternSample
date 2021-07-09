@@ -7,15 +7,35 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 class BaseViewController: UIViewController {
     
-    weak var coordinator: Coordinator? = nil
-
+    var disposeBag = DisposeBag()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = .white
+        self.makeConstraints()
+        self.bind()
     }
 
+    func makeConstraints() {
+        
+    }
+    
+    func bind() {
+        
+    }
 }
 

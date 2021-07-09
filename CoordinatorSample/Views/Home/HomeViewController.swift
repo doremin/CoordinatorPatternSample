@@ -7,24 +7,66 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+import SnapKit
+
 class HomeViewController: BaseViewController {
     
-    let button: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .black
-        button.frame = CGRect(x: 200, y: 400, width: 50, height: 50)
-        return button
+    // MARK: UI
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tt")
+        return tableView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.addSubview(self.button)
-        
-        self.button.addTarget(self, action: #selector(self.tap), for: .touchUpInside)
+    // MARK: View Model
+    let viewModel: HomeViewModel
+    
+    // MARK: Initializer
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init()
     }
     
-    @objc func tap() {
-        (self.coordinator as? HomeCoordinator)?.navigateToDetail()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // MARK: Layout
+    override func makeConstraints() {
+        super.makeConstraints()
+        
+        self.title = "Home"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add)
+
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        
+    }
+    
+    // MARK: Binding
+    override func bind() {
+        super.bind()
+        
+        // MARK: From View Model
+        self.viewModel.todos
+            .bind(to: self.tableView.rx.items(cellIdentifier: "tt")) { index, todo, cell in
+                cell.textLabel?.text = todo.title
+            }
+            .disposed(by: self.disposeBag)
+        
+        // MARK: To View Model
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .bind(onNext: self.viewModel.navigateToDetail)
+            .disposed(by: self.disposeBag)
     }
 }

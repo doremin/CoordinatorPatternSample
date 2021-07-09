@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,12 +11,20 @@
 		507A37562696969900EC19C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37552696969900EC19C1 /* SceneDelegate.swift */; };
 		507A37582696969900EC19C1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37572696969900EC19C1 /* BaseViewController.swift */; };
 		507A375D2696969B00EC19C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 507A375C2696969B00EC19C1 /* Assets.xcassets */; };
-		507A37602696969B00EC19C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 507A375E2696969B00EC19C1 /* LaunchScreen.storyboard */; };
 		507A3768269696B800EC19C1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A3767269696B800EC19C1 /* MainCoordinator.swift */; };
 		507A376A269698BE00EC19C1 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A3769269698BE00EC19C1 /* MainNavigationController.swift */; };
 		507A376C26969ADE00EC19C1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A376B26969ADE00EC19C1 /* HomeViewController.swift */; };
 		507A376E26969AE600EC19C1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A376D26969AE600EC19C1 /* DetailViewController.swift */; };
 		507A377026969C9800EC19C1 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A376F26969C9800EC19C1 /* HomeCoordinator.swift */; };
+		507A37782696D52400EC19C1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 507A37772696D52400EC19C1 /* SnapKit */; };
+		507A377B2696D59500EC19C1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 507A377A2696D59500EC19C1 /* RxCocoa */; };
+		507A377D2696D59500EC19C1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 507A377C2696D59500EC19C1 /* RxSwift */; };
+		507A377F2696D59500EC19C1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 507A377E2696D59500EC19C1 /* RxRelay */; };
+		507A37852696D64F00EC19C1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37842696D64F00EC19C1 /* HomeViewModel.swift */; };
+		507A37872696D9A900EC19C1 /* TodoModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37862696D9A900EC19C1 /* TodoModelType.swift */; };
+		507A37892696DB8A00EC19C1 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37882696DB8A00EC19C1 /* Todo.swift */; };
+		507A378C2696E9BA00EC19C1 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A378B2696E9BA00EC19C1 /* BaseViewModel.swift */; };
+		507A378E2696F01C00EC19C1 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A378D2696F01C00EC19C1 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,13 +33,17 @@
 		507A37552696969900EC19C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		507A37572696969900EC19C1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		507A375C2696969B00EC19C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		507A375F2696969B00EC19C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		507A37612696969B00EC19C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		507A3767269696B800EC19C1 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		507A3769269698BE00EC19C1 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		507A376B26969ADE00EC19C1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		507A376D26969AE600EC19C1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		507A376F26969C9800EC19C1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		507A37842696D64F00EC19C1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		507A37862696D9A900EC19C1 /* TodoModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModelType.swift; sourceTree = "<group>"; };
+		507A37882696DB8A00EC19C1 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		507A378B2696E9BA00EC19C1 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		507A378D2696F01C00EC19C1 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +51,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507A377D2696D59500EC19C1 /* RxSwift in Frameworks */,
+				507A377B2696D59500EC19C1 /* RxCocoa in Frameworks */,
+				507A377F2696D59500EC19C1 /* RxRelay in Frameworks */,
+				507A37782696D52400EC19C1 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,19 +80,63 @@
 		507A37522696969900EC19C1 /* CoordinatorSample */ = {
 			isa = PBXGroup;
 			children = (
+				507A378A2696DB8E00EC19C1 /* Model */,
+				507A37812696D5B400EC19C1 /* Views */,
+				507A37802696D59B00EC19C1 /* Coordinators */,
+				507A37862696D9A900EC19C1 /* TodoModelType.swift */,
 				507A37532696969900EC19C1 /* AppDelegate.swift */,
 				507A37552696969900EC19C1 /* SceneDelegate.swift */,
-				507A3767269696B800EC19C1 /* MainCoordinator.swift */,
-				507A37572696969900EC19C1 /* BaseViewController.swift */,
 				507A375C2696969B00EC19C1 /* Assets.xcassets */,
-				507A375E2696969B00EC19C1 /* LaunchScreen.storyboard */,
 				507A37612696969B00EC19C1 /* Info.plist */,
-				507A3769269698BE00EC19C1 /* MainNavigationController.swift */,
-				507A376B26969ADE00EC19C1 /* HomeViewController.swift */,
-				507A376D26969AE600EC19C1 /* DetailViewController.swift */,
-				507A376F26969C9800EC19C1 /* HomeCoordinator.swift */,
 			);
 			path = CoordinatorSample;
+			sourceTree = "<group>";
+		};
+		507A37802696D59B00EC19C1 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				507A3767269696B800EC19C1 /* MainCoordinator.swift */,
+				507A376F26969C9800EC19C1 /* HomeCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		507A37812696D5B400EC19C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				507A37832696D64000EC19C1 /* Detail */,
+				507A37822696D63700EC19C1 /* Home */,
+				507A37572696969900EC19C1 /* BaseViewController.swift */,
+				507A378B2696E9BA00EC19C1 /* BaseViewModel.swift */,
+				507A3769269698BE00EC19C1 /* MainNavigationController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		507A37822696D63700EC19C1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				507A376B26969ADE00EC19C1 /* HomeViewController.swift */,
+				507A37842696D64F00EC19C1 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		507A37832696D64000EC19C1 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				507A376D26969AE600EC19C1 /* DetailViewController.swift */,
+				507A378D2696F01C00EC19C1 /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		507A378A2696DB8E00EC19C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				507A37882696DB8A00EC19C1 /* Todo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +155,12 @@
 			dependencies = (
 			);
 			name = CoordinatorSample;
+			packageProductDependencies = (
+				507A37772696D52400EC19C1 /* SnapKit */,
+				507A377A2696D59500EC19C1 /* RxCocoa */,
+				507A377C2696D59500EC19C1 /* RxSwift */,
+				507A377E2696D59500EC19C1 /* RxRelay */,
+			);
 			productName = CoordinatorSample;
 			productReference = 507A37502696969900EC19C1 /* CoordinatorSample.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +188,10 @@
 				Base,
 			);
 			mainGroup = 507A37472696969900EC19C1;
+			packageReferences = (
+				507A37762696D52400EC19C1 /* XCRemoteSwiftPackageReference "snapkit" */,
+				507A37792696D59500EC19C1 /* XCRemoteSwiftPackageReference "rxswift" */,
+			);
 			productRefGroup = 507A37512696969900EC19C1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -136,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				507A37602696969B00EC19C1 /* LaunchScreen.storyboard in Resources */,
 				507A375D2696969B00EC19C1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,28 +218,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				507A376A269698BE00EC19C1 /* MainNavigationController.swift in Sources */,
+				507A37852696D64F00EC19C1 /* HomeViewModel.swift in Sources */,
 				507A37582696969900EC19C1 /* BaseViewController.swift in Sources */,
 				507A3768269696B800EC19C1 /* MainCoordinator.swift in Sources */,
 				507A37542696969900EC19C1 /* AppDelegate.swift in Sources */,
+				507A378C2696E9BA00EC19C1 /* BaseViewModel.swift in Sources */,
+				507A37872696D9A900EC19C1 /* TodoModelType.swift in Sources */,
 				507A37562696969900EC19C1 /* SceneDelegate.swift in Sources */,
 				507A377026969C9800EC19C1 /* HomeCoordinator.swift in Sources */,
+				507A378E2696F01C00EC19C1 /* DetailViewModel.swift in Sources */,
+				507A37892696DB8A00EC19C1 /* Todo.swift in Sources */,
 				507A376C26969ADE00EC19C1 /* HomeViewController.swift in Sources */,
 				507A376E26969AE600EC19C1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		507A375E2696969B00EC19C1 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				507A375F2696969B00EC19C1 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		507A37622696969B00EC19C1 /* Debug */ = {
@@ -349,6 +412,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		507A37762696D52400EC19C1 /* XCRemoteSwiftPackageReference "snapkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/snapkit/snapkit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		507A37792696D59500EC19C1 /* XCRemoteSwiftPackageReference "rxswift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/reactivex/rxswift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		507A37772696D52400EC19C1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 507A37762696D52400EC19C1 /* XCRemoteSwiftPackageReference "snapkit" */;
+			productName = SnapKit;
+		};
+		507A377A2696D59500EC19C1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 507A37792696D59500EC19C1 /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxCocoa;
+		};
+		507A377C2696D59500EC19C1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 507A37792696D59500EC19C1 /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxSwift;
+		};
+		507A377E2696D59500EC19C1 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 507A37792696D59500EC19C1 /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxRelay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 507A37482696969900EC19C1 /* Project object */;
 }

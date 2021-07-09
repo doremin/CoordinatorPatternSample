@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 protocol TodoModelType {
-    var todos: PublishSubject<[Todo]> { get set }
+    var todos: BehaviorSubject<[Todo]> { get set }
+    var maxID: BehaviorSubject<Int> { get set }
     
     func removeTodo(todo: Todo)
     func addTodo(todo: Todo)
@@ -20,17 +21,21 @@ struct TodoModel: TodoModelType {
     // MARK: Singleton
     static let shared = TodoModel()
     
-    var todos = PublishSubject<[Todo]>()
+    // MARK: UserDefaults Keys
+    enum TodoKey: String {
+        case todos = "hhhh"
+    }
+    
+    // MARK: Todos
+    var todos = BehaviorSubject<[Todo]>(value: [])
+    var maxID = BehaviorSubject<Int>(value: 0)
     
     // MARK: Initializer
     private init() {
-        let model = [
-            Todo(title: "테스트1", contents: "마아아아1", id: 1),
-            Todo(title: "테스트2", contents: "마아아아2", id: 2),
-            Todo(title: "테스트3", contents: "마아아아3", id: 3)
-        ]
+        let todos = self.loadTodos()
 
-        self.todos.onNext(model)
+        self.maxID.onNext(todos[todos.count - 1].id)
+        self.todos.onNext(todos)
     }
     
     // MARK: Action
@@ -43,6 +48,8 @@ struct TodoModel: TodoModelType {
             .subscribe(onNext: {
                 self.todos.onNext($0)
             })
+
+        self.saveTodos()
     }
     
     func addTodo(todo: Todo) {
@@ -51,12 +58,35 @@ struct TodoModel: TodoModelType {
                 todos + [todo]
             }
             .subscribe(onNext: {
+                self.maxID.onNext(todo.id)
                 self.todos.onNext($0)
             })
+
+        self.saveTodos()
     }
 
     func saveTodos() {
-        let encoder = try? PropertyListEncoder()
+        _ = self.todos
+            .subscribe(on: CurrentThreadScheduler.instance)
+            .subscribe(onNext: {
+                let encodedValue = try? PropertyListEncoder().encode($0)
+                UserDefaults.standard.setValue(encodedValue, forKey: TodoKey.todos.rawValue)
+            })
+    }
+    
+    func loadTodos() -> [Todo] {
+        guard let data = UserDefaults.standard.value(forKey: TodoKey.todos.rawValue) as? Data else {
+            return [
+                Todo(title: "테스트1", contents: "마아아아1", id: 1),
+                Todo(title: "테스트2", contents: "마아아아2", id: 2),
+                Todo(title: "테스트3", contents: "마아아아3", id: 3)
+            ]
+        }
+
+        guard let todos = try? PropertyListDecoder().decode([Todo].self, from: data) else {
+            return []
+        }
         
+        return todos
     }
 }
