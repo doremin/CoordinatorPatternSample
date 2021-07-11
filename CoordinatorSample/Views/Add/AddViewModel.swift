@@ -8,10 +8,16 @@
 import RxCocoa
 import RxSwift
 
+enum TodoEditMode {
+    case add
+    case edit(todo: Todo, index: Int)
+}
+
 class AddViewModel: ViewModel {
 
-    let model: TodoModel
+    private let interactor: TodoInteractor
     weak var coordinator: HomeCoordinator?
+    private let mode: TodoEditMode
 
     var disposeBag = DisposeBag()
 
@@ -26,17 +32,26 @@ class AddViewModel: ViewModel {
         var addResult: PublishSubject<Result<Void, TodoError>>
     }
     
-    init(model: TodoModel, todo: Todo? = nil) {
-        self.model = model
+    init(interactor: TodoInteractor, mode: TodoEditMode = .add) {
+        self.interactor = interactor
+        self.mode = mode
     }
     
     func transform(input: Input) -> Output {
+        var viewTodo: Todo?
+        switch mode {
+        case .add:
+            viewTodo = nil
+        case .edit(let targetTodo, _):
+            viewTodo = targetTodo
+        }
+        
         let output = Output(
-            todo: BehaviorSubject(value: nil),
+            todo: BehaviorSubject(value: viewTodo),
             addResult: PublishSubject()
         )
         
-        let todo = Observable.combineLatest(input.title, input.contents, self.model.maxID)
+        let todo = Observable.combineLatest(input.title, input.contents, self.interactor.maxID)
             .map { title, contents, maxId -> Result<Todo, TodoError> in
                 guard let title = title, !title.isEmpty else {
                     return Result.failure(TodoError.noTitle)
@@ -56,7 +71,13 @@ class AddViewModel: ViewModel {
             .subscribe(onNext: { result in
                 switch result {
                 case .success(let todo):
-                    self.model.addTodo(todo: todo)
+                    switch self.mode {
+                    case .add:
+                        self.interactor.addTodo(todo: todo)
+                    case .edit(_, let index):
+                        self.interactor.replaceTodo(with: todo, index: index)
+                    }
+                    
                     output.addResult.onNext(
                         .success(())
                     )

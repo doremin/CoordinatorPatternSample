@@ -5,6 +5,8 @@
 //  Created by Domin Kim on 2021/07/08.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 class AddViewController: BaseViewController {
@@ -90,12 +92,25 @@ class AddViewController: BaseViewController {
         )
         
         let output = self.viewModel.transform(input: input)
+        
+        output.todo
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] todo in
+                guard let self = self else { return }
+                
+                self.titleField.rx.text
+                    .onNext(todo?.title)
+                self.contentTextView.rx.text
+                    .onNext(todo?.contents)
+            })
+            .disposed(by: self.disposeBag)
 
         output.addResult
             .subscribe(
                 onNext: { [unowned self] result in
                     switch result {
                     case .success:
+                        self.dismiss(animated: true)
                         self.viewModel.navigateToHome()
                     case .failure(let error):
                         let alert = UIAlertController(

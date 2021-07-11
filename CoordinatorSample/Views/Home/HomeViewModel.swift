@@ -10,7 +10,7 @@ import RxSwift
 
 class HomeViewModel: ViewModel {
     
-    private let todoModel: TodoModel
+    private let interactor: TodoInteractor
     weak var coordinator: HomeCoordinator?
     
     struct Input { }
@@ -20,8 +20,8 @@ class HomeViewModel: ViewModel {
     }
     
     // MARK: Intializer
-    init(todoModel: TodoModel) {
-        self.todoModel = todoModel
+    init(interactor: TodoInteractor) {
+        self.interactor = interactor
         
         self.bindModel()
     }
@@ -34,16 +34,20 @@ class HomeViewModel: ViewModel {
     func selectTodo(index: Int) {
         guard let coordinator = coordinator else { return }
         
-        _ = Observable.combineLatest(todoModel.todos, Observable.of(index))
+        _ = Observable.combineLatest(self.interactor.todos, Observable.of(index))
             .take(1)
-            .map { $0[$1] }
+            .map { ($0[$1], index) }
             .bind(onNext: coordinator.navigateToDetail)
+    }
+    
+    func removeTodo(index: Int) {
+        self.interactor.removeTodo(at: index)
     }
     
     // MARK: Transform
     func transform(input: Input) -> Output {
         return Output(
-            todos: self.todoModel.todos.asDriver(onErrorJustReturn: [])
+            todos: self.interactor.todos.asDriver(onErrorJustReturn: [])
         )
     }
     

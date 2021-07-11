@@ -75,5 +75,10 @@ class HomeViewController: BaseViewController {
                 self.tableView.deselectRow(at: $0, animated: true)
             })
             .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.itemDeleted
+            .map { $0.row }
+            .bind(onNext: self.viewModel.removeTodo(index:))
+            .disposed(by: self.disposeBag)
     }
 }

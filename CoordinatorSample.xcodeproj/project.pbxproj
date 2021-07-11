@@ -21,7 +21,7 @@
 		507A377D2696D59500EC19C1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 507A377C2696D59500EC19C1 /* RxSwift */; };
 		507A377F2696D59500EC19C1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 507A377E2696D59500EC19C1 /* RxRelay */; };
 		507A37852696D64F00EC19C1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37842696D64F00EC19C1 /* HomeViewModel.swift */; };
-		507A37872696D9A900EC19C1 /* TodoModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37862696D9A900EC19C1 /* TodoModelType.swift */; };
+		507A37872696D9A900EC19C1 /* TodoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37862696D9A900EC19C1 /* TodoInteractor.swift */; };
 		507A37892696DB8A00EC19C1 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A37882696DB8A00EC19C1 /* Todo.swift */; };
 		507A378C2696E9BA00EC19C1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A378B2696E9BA00EC19C1 /* ViewModel.swift */; };
 		507A378E2696F01C00EC19C1 /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A378D2696F01C00EC19C1 /* AddViewModel.swift */; };
@@ -40,7 +40,7 @@
 		507A376D26969AE600EC19C1 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		507A376F26969C9800EC19C1 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		507A37842696D64F00EC19C1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		507A37862696D9A900EC19C1 /* TodoModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModelType.swift; sourceTree = "<group>"; };
+		507A37862696D9A900EC19C1 /* TodoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInteractor.swift; sourceTree = "<group>"; };
 		507A37882696DB8A00EC19C1 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		507A378B2696E9BA00EC19C1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		507A378D2696F01C00EC19C1 /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
@@ -61,6 +61,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17627DAE269AACF300C9D2ED /* System */ = {
+			isa = PBXGroup;
+			children = (
+				507A37532696969900EC19C1 /* AppDelegate.swift */,
+				507A37552696969900EC19C1 /* SceneDelegate.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		17627DAF269AAD0600C9D2ED /* Interators */ = {
+			isa = PBXGroup;
+			children = (
+				507A37862696D9A900EC19C1 /* TodoInteractor.swift */,
+			);
+			path = Interators;
+			sourceTree = "<group>";
+		};
 		507A37472696969900EC19C1 = {
 			isa = PBXGroup;
 			children = (
@@ -80,12 +97,11 @@
 		507A37522696969900EC19C1 /* CoordinatorSample */ = {
 			isa = PBXGroup;
 			children = (
+				17627DAF269AAD0600C9D2ED /* Interators */,
+				17627DAE269AACF300C9D2ED /* System */,
 				507A378A2696DB8E00EC19C1 /* Model */,
 				507A37812696D5B400EC19C1 /* Views */,
 				507A37802696D59B00EC19C1 /* Coordinators */,
-				507A37862696D9A900EC19C1 /* TodoModelType.swift */,
-				507A37532696969900EC19C1 /* AppDelegate.swift */,
-				507A37552696969900EC19C1 /* SceneDelegate.swift */,
 				507A375C2696969B00EC19C1 /* Assets.xcassets */,
 				507A37612696969B00EC19C1 /* Info.plist */,
 			);
@@ -223,7 +239,7 @@
 				507A3768269696B800EC19C1 /* MainCoordinator.swift in Sources */,
 				507A37542696969900EC19C1 /* AppDelegate.swift in Sources */,
 				507A378C2696E9BA00EC19C1 /* ViewModel.swift in Sources */,
-				507A37872696D9A900EC19C1 /* TodoModelType.swift in Sources */,
+				507A37872696D9A900EC19C1 /* TodoInteractor.swift in Sources */,
 				507A37562696969900EC19C1 /* SceneDelegate.swift in Sources */,
 				507A377026969C9800EC19C1 /* HomeCoordinator.swift in Sources */,
 				507A378E2696F01C00EC19C1 /* AddViewModel.swift in Sources */,

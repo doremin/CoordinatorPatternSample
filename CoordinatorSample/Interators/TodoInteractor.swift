@@ -1,5 +1,5 @@
 //
-//  TodoModelType.swift
+//  TodoInteractor.swift
 //  CoordinatorSample
 //
 //  Created by Domin Kim on 2021/07/08.
@@ -13,7 +13,18 @@ enum TodoError: Error {
     case noContents
 }
 
-protocol TodoModelType {
+extension TodoError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .noTitle:
+            return "No Title"
+        case .noContents:
+            return "No Contents"
+        }
+    }
+}
+
+protocol TodoInteractorType {
     var todos: BehaviorSubject<[Todo]> { get }
     var maxID: BehaviorSubject<Int> { get }
     
@@ -21,10 +32,7 @@ protocol TodoModelType {
     func addTodo(todo: Todo)
 }
 
-struct TodoModel: TodoModelType {
-
-    // MARK: Singleton
-    static let shared = TodoModel()
+struct TodoInteractor: TodoInteractorType {
     
     // MARK: UserDefaults Keys
     enum TodoKey: String {
@@ -36,7 +44,9 @@ struct TodoModel: TodoModelType {
     var maxID = BehaviorSubject<Int>(value: 0)
     
     // MARK: Initializer
-    private init() {
+    init() { }
+    
+    func start() {
         let todos = self.loadTodos()
 
         self.maxID.onNext(todos[todos.count - 1].id)
@@ -48,6 +58,22 @@ struct TodoModel: TodoModelType {
         _ = self.todos
             .map { todos in
                 todos.filter { $0 != todo }
+            }
+            .ifEmpty(switchTo: .error(RxError.unknown))
+            .subscribe(onNext: {
+                self.todos.onNext($0)
+            })
+
+        self.saveTodos()
+    }
+    
+    func removeTodo(at: Int) {
+        _ = self.todos
+            .observe(on: MainScheduler.asyncInstance)
+            .take(1)
+            .map { todos in
+                let slice = todos[0 ..< at] + todos[at + 1 ..< todos.count]
+                return Array(slice)
             }
             .ifEmpty(switchTo: .error(RxError.unknown))
             .subscribe(onNext: {
@@ -70,10 +96,12 @@ struct TodoModel: TodoModelType {
         self.saveTodos()
     }
     
-    func replaceTodo(todo: Todo, index: Int) {
-        _ = Observable.combineLatest(self.todos, Observable.of(todo))
-            .map { todos, todo in
-                return todos[0 ..< index] + [todo] + todos[index + 1 ..< todos.count]
+    func replaceTodo(with: Todo, index: Int) {
+        _ = Observable.combineLatest(self.todos, Observable.of(with))
+            .observe(on:MainScheduler.asyncInstance)
+            .map { todos, with -> [Todo] in
+                let slice = todos[0 ..< index] + [with] + todos[index + 1 ..< todos.count]
+                return Array(slice)
             }
             .bind(onNext: self.todos.onNext)
         
@@ -100,7 +128,9 @@ struct TodoModel: TodoModelType {
         }
 
         guard let todos = try? PropertyListDecoder().decode([Todo].self, from: data) else {
-            return []
+            return [Todo(title: "테스트1", contents: "마아아아1", id: 1),
+                    Todo(title: "테스트2", contents: "마아아아2", id: 2),
+                    Todo(title: "테스트3", contents: "마아아아3", id: 3)]
         }
         
         return todos
